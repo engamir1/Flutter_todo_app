@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'To Do App',
       theme: ThemeData(
-    // this is some comment in master
+        // this is some comment in master
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -26,7 +26,9 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp();
+    return   MaterialApp(
+      color: Colors.grey[100],
+    );
   }
 }
  
