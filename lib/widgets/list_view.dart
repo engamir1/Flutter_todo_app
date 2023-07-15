@@ -7,11 +7,17 @@ class NotesListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: ListView(
-        children: const [
-          SizedBox(height: 15),
-          TodoCard(),
-        ],
+      child: ListView.builder(
+        itemBuilder: (context, ids) {
+          return const Column(
+            children: [
+              TodoCard(),
+              SizedBox(height: 15),
+
+            ],
+          );
+        },
+        itemCount: 7,
       ),
     );
   }
