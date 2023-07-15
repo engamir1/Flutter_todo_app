@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/widgets/custom_app.dart';
+import 'package:todo_app/widgets/todo_card.dart';
 
 class NotesViewBody extends StatelessWidget {
   const NotesViewBody({super.key});
@@ -12,6 +13,8 @@ class NotesViewBody extends StatelessWidget {
         child: Column(
           children: [
             CustomAppBAr(),
+            SizedBox(height: 15), TodoCard()
+
           ],
         ),
       ),
