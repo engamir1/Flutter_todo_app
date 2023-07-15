@@ -1,4 +1,7 @@
+ 
 import 'package:flutter/material.dart';
+
+import 'views/notes_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,37 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'To Do Appa',
-      theme: ThemeData(
- 
-        // this is some comment in master
-         // edit from github
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen),
- 
-        useMaterial3: true,
-      ),
-      home: const MainPage( ),
+      title: 'To Do App',
+      theme: ThemeData(brightness: Brightness.dark),
+      home: const NotesView( ),
     );
   }
 }
-class MainPage extends StatelessWidget {
-  const MainPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
- 
-    return const MaterialApp( home: Scaffold(
-      body: Column(
-        children: [
-          // this is comment from master 
-          Text("my Todo App"),
-          // add from new_branch 
-          Text("my Todo App"),
-          Text("Second App"),
-//delete sizedBox
-        ],
-      ),
-    ),);
-   }
-}
  
