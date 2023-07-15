@@ -35,6 +35,8 @@ class MainPage extends StatelessWidget {
         children: [
           // this is comment from master 
           Text("my Todo App"),
+          // add from new_branch 
+          Text("my Todo App"),
           Text("Second App"),
 
         ],
