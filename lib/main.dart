@@ -38,8 +38,7 @@ class MainPage extends StatelessWidget {
           // add from new_branch 
           Text("my Todo App"),
           Text("Second App"),
-          SizedBox(height: 150,),
-
+//delete sizedBox
         ],
       ),
     ),);
