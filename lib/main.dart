@@ -28,8 +28,8 @@ class MainPage extends StatelessWidget {
     return const MaterialApp( home: Scaffold(
       body: Column(
         children: [
-          Text("my Todo App"),
-          Text("Second App"),
+          // i deletede text from auth 
+           Text("Second App"),
 
         ],
       ),
