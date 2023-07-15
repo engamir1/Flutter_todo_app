@@ -36,6 +36,7 @@ class MainPage extends StatelessWidget {
           // this is comment from master 
           Text("my Todo App"),
           Text("Second App"),
+          SizedBox(height: 150,),
 
         ],
       ),
