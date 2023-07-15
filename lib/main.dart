@@ -13,8 +13,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'To Do App',
       theme: ThemeData(
+ 
         // this is some comment in master
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+ 
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen),
+ 
         useMaterial3: true,
       ),
       home: const MainPage( ),
@@ -26,9 +29,16 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   MaterialApp(
-      color: Colors.grey[100],
-    );
-  }
+ 
+    return const MaterialApp( home: Scaffold(
+      body: Column(
+        children: [
+          Text("my Todo App"),
+          Text("Second App"),
+
+        ],
+      ),
+    ),);
+   }
 }
  
