@@ -6,16 +6,24 @@ class CustomTextField extends StatelessWidget {
     Key? key,
     required this.maxLines,
     required this.hintText,
+    this.onSave,
   }) : super(key: key);
 
   final int maxLines;
   final String hintText;
-
+final void Function(String?)? onSave;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextField(
+        TextFormField(
+          validator: (value) {
+            if (value?.isEmpty ?? true) {
+              return "Value is required";
+            }
+            return null;
+          },
+          onSaved: onSave,
           maxLines: maxLines,
           // learn how to add border to textfield
           decoration: InputDecoration(
