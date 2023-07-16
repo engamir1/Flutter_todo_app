@@ -1,26 +1,36 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key});
+  const CustomTextField({
+    Key? key,
+    required this.maxLines,
+    required this.hintText,
+  }) : super(key: key);
+
+  final int maxLines;
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         TextField(
+          maxLines: maxLines,
           // learn how to add border to textfield
           decoration: InputDecoration(
-            hintText: "some text",
+            hintText: hintText,
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.orangeAccent),
+                borderSide: const BorderSide(color: Colors.orangeAccent),
+                borderRadius: BorderRadius.circular(12)
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white),
+                borderSide: const BorderSide(color: Colors.white),
+                borderRadius: BorderRadius.circular(12)
             ),
-            border: OutlineInputBorder(),
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
       ],
     );
   }
