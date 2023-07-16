@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/views/edit_note_view.dart';
 
 class TodoCard extends StatelessWidget {
   const TodoCard({super.key});
@@ -7,7 +8,9 @@ class TodoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("clicked");
+Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return const EditNote();
+        }));
       },
       child: Container(
         padding: const EdgeInsets.all(25),

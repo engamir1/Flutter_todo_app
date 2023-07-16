@@ -1,10 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({
-    super.key,
-  });
-
+    Key? key,
+    required this.iconName,
+  }) : super(key: key);
+final IconData iconName;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,8 +17,8 @@ class SearchWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10)),
       child: IconButton(
         onPressed: () {},
-        icon: const Icon(
-          Icons.search,
+        icon:   Icon(
+         iconName,
           size: 40,
         ),
       ),

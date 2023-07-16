@@ -18,7 +18,7 @@ class MyBottomSheet extends StatelessWidget {
             SizedBox(
               height: 100,
             ),
-            SubmitButton(),
+            SubmitButton(text: "Add"),
           ],
         ),
       ),
