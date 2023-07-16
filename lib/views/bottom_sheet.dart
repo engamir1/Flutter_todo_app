@@ -20,7 +20,6 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20.0),
-      height: 400,
       child: SingleChildScrollView(
         child: Form(
           key: formKey,

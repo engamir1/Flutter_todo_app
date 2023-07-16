@@ -13,6 +13,9 @@ class NotesView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
+              // if i want it to take whole page height
+              isScrollControlled: true,
+
               elevation: 5,
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(
