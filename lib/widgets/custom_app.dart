@@ -25,9 +25,7 @@ class CustomAppBAr extends StatelessWidget {
         ),
         SearchWidget(
           iconName: iconName,
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: onPressed,
         )
       ],
     );

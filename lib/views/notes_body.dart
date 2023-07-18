@@ -7,17 +7,18 @@ class NotesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Padding(
-        padding: EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
             CustomAppBAr(
               text: "Notes App",
+              onPressed: () {},
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             // we should make listView out alone
-            NotesListView(),
+            const NotesListView(),
 
           ],
         ),
