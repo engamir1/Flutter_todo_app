@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:todo_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:todo_app/models/notes_model.dart';
 import 'package:todo_app/widgets/submit_button.dart';
@@ -21,52 +22,66 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
   String? title, description;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20.0),
-      child: SingleChildScrollView(
-        child: Form(
-          key: formKey,
-          autovalidateMode: autovalidateMode,
-          child: Column(
-            children: [
-              CustomTextField(
-                  hintText: "Title",
-                  maxLines: 1,
-                  onSave: (value) {
-                    title = value;
-                    print(title);
-
-                  }),
-              CustomTextField(
-                  hintText: "Description",
-                  maxLines: 4,
-                  onSave: (value) {
-                    description = value;
-                  }),
-              const SizedBox(
-                height: 100,
+    return BlocConsumer<AddNoteCubit, AddNoteState>(
+      listener: (context, state) {
+        // TODO: implement listener
+        if (state is AddNoteSuccess) {
+          Navigator.pop(context);
+        } else if (state is AddNoteFailure) {
+          print("error ${state.errMsg}");
+        }
+      },
+      builder: (context, state) {
+        return ModalProgressHUD(
+          inAsyncCall: state is AddNoteLoading ? true : false,
+          child: Container(
+            padding: const EdgeInsets.all(20.0),
+            child: SingleChildScrollView(
+              child: Form(
+                key: formKey,
+                autovalidateMode: autovalidateMode,
+                child: Column(
+                  children: [
+                    CustomTextField(
+                        hintText: "Title",
+                        maxLines: 1,
+                        onSave: (value) {
+                          title = value;
+                          print(title);
+                        }),
+                    CustomTextField(
+                        hintText: "Description",
+                        maxLines: 4,
+                        onSave: (value) {
+                          description = value;
+                        }),
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    SubmitButton(
+                        text: "Add",
+                        onTap: () {
+                          if (formKey.currentState!.validate()) {
+                            formKey.currentState!.save();
+                            var noteModel = NoteModel(
+                                title: title!,
+                                description: description!,
+                                date: DateTime.now().toString(),
+                                color: 1);
+                            BlocProvider.of<AddNoteCubit>(context)
+                                .addNote(noteModel);
+                          } else {
+                            autovalidateMode = AutovalidateMode.always;
+                            setState(() {});
+                          }
+                        }),
+                  ],
+                ),
               ),
-              SubmitButton(
-                  text: "Add",
-                  onTap: () {
-
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      var noteModel = NoteModel(
-                          title: title!,
-                          description: description!,
-                          date: DateTime.now().toString(),
-                          color: 1);
-                      BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                    } else {
-                      autovalidateMode = AutovalidateMode.always;
-                      setState(() {});
-                    }
-                  }),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
