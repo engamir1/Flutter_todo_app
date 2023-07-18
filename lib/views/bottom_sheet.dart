@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:todo_app/models/notes_model.dart';
 import 'package:todo_app/widgets/submit_button.dart';
 import 'package:todo_app/widgets/text_field.dart';
 
@@ -31,6 +34,8 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                   maxLines: 1,
                   onSave: (value) {
                     title = value;
+                    print(title);
+
                   }),
               CustomTextField(
                   hintText: "Description",
@@ -44,8 +49,15 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
               SubmitButton(
                   text: "Add",
                   onTap: () {
+
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
+                      var noteModel = NoteModel(
+                          title: title!,
+                          description: description!,
+                          date: DateTime.now().toString(),
+                          color: 1);
+                      BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                       setState(() {});
