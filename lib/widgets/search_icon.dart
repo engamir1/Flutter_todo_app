@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 class SearchWidget extends StatelessWidget {
   const SearchWidget({
     Key? key,
+    required this.onPressed,
     required this.iconName,
   }) : super(key: key);
 final IconData iconName;
+  final void Function()? onPressed;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +19,7 @@ final IconData iconName;
           color: Colors.white.withOpacity(0.05),
           borderRadius: BorderRadius.circular(10)),
       child: IconButton(
-        onPressed: () {},
+        onPressed: onPressed,
         icon:   Icon(
          iconName,
           size: 40,

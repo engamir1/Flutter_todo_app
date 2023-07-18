@@ -8,9 +8,12 @@ class CustomAppBAr extends StatelessWidget {
     Key? key,
     required this.text,
     this.iconName = Icons.search,
+    this.onPressed,
   }) : super(key: key);
   final String text;
   final IconData iconName;
+  final void Function()? onPressed;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,7 +23,12 @@ class CustomAppBAr extends StatelessWidget {
           text,
           style: const TextStyle(fontSize: 30),
         ),
-        SearchWidget(iconName: iconName)
+        SearchWidget(
+          iconName: iconName,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        )
       ],
     );
   }

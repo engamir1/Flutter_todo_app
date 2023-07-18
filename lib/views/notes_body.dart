@@ -12,7 +12,9 @@ class NotesViewBody extends StatelessWidget {
         padding: EdgeInsets.all(12.0),
         child: Column(
           children: [
-            CustomAppBAr(text: "Notes App"),
+            CustomAppBAr(
+              text: "Notes App",
+            ),
             SizedBox(height: 15),
             // we should make listView out alone
             NotesListView(),
