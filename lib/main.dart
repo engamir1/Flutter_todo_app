@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // 0
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo_app/constants/constants.dart';
-import 'package:todo_app/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:todo_app/cubits/notes_cubit/notes_cubit_cubit.dart';
 import 'package:todo_app/simple_bloc_observer.dart';
 
 import 'models/notes_model.dart';
@@ -25,13 +25,16 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-   @override
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'To Do App',
-      theme: ThemeData(brightness: Brightness.dark),
-      home: const NotesView(),
+    return BlocProvider(
+      create: (context) => NotesCubitCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'To Do App',
+        theme: ThemeData(brightness: Brightness.dark),
+        home: const NotesView(),
+      ),
     );
   }
 }

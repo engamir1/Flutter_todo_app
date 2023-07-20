@@ -6,6 +6,8 @@ import 'package:todo_app/models/notes_model.dart';
 import 'package:todo_app/widgets/submit_button.dart';
 import 'package:todo_app/widgets/text_field.dart';
 
+import 'color_pallete.dart';
+
 class MyBottomSheet extends StatefulWidget {
   const MyBottomSheet({super.key});
 
@@ -35,7 +37,11 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
         return ModalProgressHUD(
           inAsyncCall: state is AddNoteLoading ? true : false,
           child: Container(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.only(
+                left: 12.0,
+                right: 12,
+                top: 12,
+                bottom: MediaQuery.of(context).viewInsets.bottom + 12),
             child: SingleChildScrollView(
               child: Form(
                 key: formKey,
@@ -56,23 +62,29 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                           description = value;
                         }),
                     const SizedBox(
-                      height: 100,
+                      height: 20),
+                    const ColorList(),
+                    const SizedBox(height: 20
                     ),
                     SubmitButton(
                         text: "Add",
-                        onTap: () {
+                        onTap: () async {
                           if (formKey.currentState!.validate()) {
+ 
                             formKey.currentState!.save();
                             var noteModel = NoteModel(
                                 title: title!,
                                 description: description!,
                                 date: DateTime.now().toString(),
-                                color: 1);
+                                color: BlocProvider.of<AddNoteCubit>(context)
+                                    .color!
+                                    .value);
                             BlocProvider.of<AddNoteCubit>(context)
                                 .addNote(noteModel);
+
                           } else {
                             autovalidateMode = AutovalidateMode.always;
-                            setState(() {});
+                           
                           }
                         }),
                   ],
@@ -85,3 +97,4 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
     );
   }
 }
+

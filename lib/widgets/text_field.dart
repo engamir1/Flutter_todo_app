@@ -7,11 +7,13 @@ class CustomTextField extends StatelessWidget {
     required this.maxLines,
     required this.hintText,
     this.onSave,
+    this.onChanged,
   }) : super(key: key);
 
   final int maxLines;
   final String hintText;
 final void Function(String?)? onSave;
+final void Function(String?)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,6 +27,7 @@ final void Function(String?)? onSave;
           },
           onSaved: onSave,
           maxLines: maxLines,
+          onChanged: onChanged,
           // learn how to add border to textfield
           decoration: InputDecoration(
             hintText: hintText,
@@ -37,6 +40,7 @@ final void Function(String?)? onSave;
                 borderRadius: BorderRadius.circular(12)
             ),
           ),
+
         ),
         const SizedBox(height: 10),
       ],
