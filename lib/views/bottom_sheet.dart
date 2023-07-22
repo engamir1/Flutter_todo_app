@@ -28,6 +28,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
       listener: (context, state) {
         // TODO: implement listener
         if (state is AddNoteSuccess) {
+          // BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
           Navigator.pop(context);
         } else if (state is AddNoteFailure) {
           print("error ${state.errMsg}");
@@ -48,27 +49,41 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                 autovalidateMode: autovalidateMode,
                 child: Column(
                   children: [
+                    const Text(
+                      "اضف مهمة",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
                     CustomTextField(
-                        hintText: "Title",
+                        hintText: "العنوان",
                         maxLines: 1,
                         onSave: (value) {
                           title = value;
-                          print(title);
+                          // print(title);
                         }),
                     CustomTextField(
-                        hintText: "Description",
+                        hintText: "الوصف",
                         maxLines: 4,
                         onSave: (value) {
                           description = value;
                         }),
                     const SizedBox(
                       height: 20),
-                    const ColorList(),
-                    const SizedBox(height: 20
+                    const Text(
+                      "اختار لون للمهمة",
+                      style: TextStyle(fontSize: 20),
                     ),
+                    const SizedBox(height: 20),
+
+                    const ColorList(),
+                    const SizedBox(height: 40),
                     SubmitButton(
                         text: "Add",
                         onTap: () async {
+                  
+                            
                           if (formKey.currentState!.validate()) {
  
                             formKey.currentState!.save();

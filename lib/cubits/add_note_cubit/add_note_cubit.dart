@@ -8,16 +8,19 @@ part 'add_note_state.dart';
 
 class AddNoteCubit extends Cubit<AddNoteState> {
   AddNoteCubit() : super(AddNoteInitial());
-  Color ?color ;
+  Color? color;
+  int curIndex = 0;
+
   addNote(NoteModel note) async {
     emit(AddNoteLoading());
     try {
       var notesBox = Hive.box<NoteModel>(knotes);
-      await notesBox.add(note);
-      // print("notes now is at add $note");
-      print("notes now is at add ${notesBox.values.toList().reversed}");
 
+      await notesBox.add(note);
       emit(AddNoteSuccess());
+      // print("notes now is at add $note");
+      // print("notes now is at add ${notesBox.values.toList().reversed}");
+
     } catch (e) {
       // TODO
  
@@ -25,5 +28,9 @@ class AddNoteCubit extends Cubit<AddNoteState> {
       emit(AddNoteFailure(e.toString()));
 
     }
+  }
+
+  colorTap() {
+    emit(AddNoteColor());
   }
 }

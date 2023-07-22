@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/cubits/notes_cubit/notes_cubit_cubit.dart';
 
 import 'package:todo_app/models/notes_model.dart';
-import 'package:todo_app/widgets/custom_app.dart';
+import 'package:todo_app/widgets/custom_appbar.dart';
 import 'package:todo_app/widgets/submit_button.dart';
 import 'package:todo_app/widgets/text_field.dart';
 

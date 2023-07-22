@@ -30,6 +30,7 @@ final void Function(String?)? onChanged;
           onChanged: onChanged,
           // learn how to add border to textfield
           decoration: InputDecoration(
+            
             hintText: hintText,
             focusedBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.orangeAccent),
