@@ -8,17 +8,20 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     this.onSave,
     this.onChanged,
+    this.initialValue = "",
   }) : super(key: key);
 
   final int maxLines;
   final String hintText;
 final void Function(String?)? onSave;
 final void Function(String?)? onChanged;
+final String initialValue;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         TextFormField(
+          initialValue: initialValue,
           validator: (value) {
             if (value?.isEmpty ?? true) {
               return "Value is required";

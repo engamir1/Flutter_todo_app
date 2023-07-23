@@ -30,13 +30,12 @@ class EditNote extends StatelessWidget {
                   onPressed: () {
                     note.save();
                     BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
-
                     Navigator.of(context).pop();
                   },
                 ),
                 const SizedBox(height: 50),
                 CustomTextField(
-             
+                  initialValue: note.title,      
                   hintText: note.title,
                   maxLines: 1,
                   onChanged: (value) {
@@ -44,7 +43,7 @@ class EditNote extends StatelessWidget {
                   },
                 ),
                 CustomTextField(
-
+                  initialValue: note.description,
                   hintText: note.description,
                   maxLines: 4,
                   onChanged: (value) {
