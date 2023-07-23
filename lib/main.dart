@@ -17,7 +17,7 @@ void main() async {
   // 3 open box
   await Hive.openBox<NoteModel>(knotes);
   // 4 observe what happens in State
-  Bloc.observer = SimpleBlocObserver();
+  Bloc.observer = MyBlocObserver();
 
   runApp(const MyApp());
 }

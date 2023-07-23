@@ -10,13 +10,14 @@ class NotesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BlocConsumer<NotesCubitCubit, NotesCubitState>(
       listener: (context, state) {},
-      builder: (context, state) {
-        return BlocBuilder<NotesCubitCubit, NotesCubitState>(
-          builder: (context, state) {
-            List<NoteModel> notes =
-                BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
+        builder: (context, state) {
+          // BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
+
+          List<NoteModel> notes =
+              BlocProvider.of<NotesCubitCubit>(context).notes;
             return notes.isNotEmpty
                 ? Expanded(
                     child: ListView.builder(
@@ -24,17 +25,16 @@ class NotesListView extends StatelessWidget {
                         return Column(
                           children: [
                             TodoCard(note: notes[ids]),
-                            const SizedBox(height: 15),
+                          const SizedBox(height: 12),
                           ],
                         );
                       },
                       itemCount: notes.length,
                     ),
                   )
-                : Center(child: SvgPicture.asset("assets/images/add.svg"));
-          },
-        );
-      },
-    );
-  }
+              : Center(child: SvgPicture.asset("assets/images/add.svg"));
+        });
+  } 
+   
 }
+

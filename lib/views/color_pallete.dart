@@ -57,7 +57,7 @@ class _ColorListState extends State<ColorList> {
                         color: colors[ids],
                         child: const Icon(
                           Icons.check,
-                          size: 40,
+                          size: 50,
                           color: Colors.black54,
                         ),
                       )

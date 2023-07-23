@@ -6,6 +6,7 @@ import 'package:todo_app/models/notes_model.dart';
 import 'package:todo_app/widgets/submit_button.dart';
 import 'package:todo_app/widgets/text_field.dart';
 
+import '../cubits/notes_cubit/notes_cubit_cubit.dart';
 import 'color_pallete.dart';
 
 class MyBottomSheet extends StatefulWidget {
@@ -28,7 +29,8 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
       listener: (context, state) {
         // TODO: implement listener
         if (state is AddNoteSuccess) {
-          // BlocProvider.of<NotesCubitCubit>(context).fetchAllNotes();
+          print(state);
+          BlocProvider.of<NotesCubitCubit>(context).notes;
           Navigator.pop(context);
         } else if (state is AddNoteFailure) {
           print("error ${state.errMsg}");
@@ -69,23 +71,18 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                         onSave: (value) {
                           description = value;
                         }),
-                    const SizedBox(
-                      height: 20),
+                    const SizedBox(height: 20),
                     const Text(
                       "اختار لون للمهمة",
                       style: TextStyle(fontSize: 20),
                     ),
-                    const SizedBox(height: 20),
-
+                    const SizedBox(height: 12),
                     const ColorList(),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 20),
                     SubmitButton(
                         text: "Add",
                         onTap: () async {
-                  
-                            
                           if (formKey.currentState!.validate()) {
- 
                             formKey.currentState!.save();
                             var noteModel = NoteModel(
                                 title: title!,
@@ -96,10 +93,16 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                                     .value);
                             BlocProvider.of<AddNoteCubit>(context)
                                 .addNote(noteModel);
+                                
+                            // tell cubit that when i press add and it is ok and validat
+                            // please emit state of NotesSuccess
+                            // so when any widget listen to my state of NotesSuccess
+                            // it will rebuild
 
+                            BlocProvider.of<NotesCubitCubit>(context)
+                                .fetchAllNotes();
                           } else {
                             autovalidateMode = AutovalidateMode.always;
-                           
                           }
                         }),
                   ],
@@ -112,4 +115,3 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
     );
   }
 }
-

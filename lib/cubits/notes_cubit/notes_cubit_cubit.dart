@@ -9,13 +9,15 @@ part 'notes_cubit_state.dart';
 class NotesCubitCubit extends Cubit<NotesCubitState> {
   NotesCubitCubit() : super(NotesCubitInitial());
   List<NoteModel> notes = [];
+   
+
   fetchAllNotes() {
     emit(NoteLoading());
     var notesBox = Hive.box<NoteModel>(knotes);
-    notes = notesBox.values.toList();
+    notes = notesBox.values.toList().reversed.toList();
     // print("notes now is $notes");
     emit(NotesSuccess());
  
-    return notes.reversed.toList();
+    // return notes.reversed.toList();
   }
 }
